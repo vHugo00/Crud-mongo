@@ -1,4 +1,4 @@
-Aqui está um exemplo de documentação para o `README.md` do seu projeto:
+
 
 ---
 
@@ -126,4 +126,3 @@ Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICEN
 
 ---
 
-Essa documentação fornece uma visão geral do seu projeto e orienta outros desenvolvedores em como configurá-lo e utilizá-lo.
