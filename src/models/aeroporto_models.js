@@ -11,8 +11,8 @@ const aeroportoSchema = new Schema({
     type: String,
     required: true
   },
-  cep: {
-    type: String,
+  cep_endereco: {
+    type: Number,
     required: true,
     unique: true
   }
