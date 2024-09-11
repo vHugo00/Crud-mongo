@@ -1,25 +1,28 @@
-const axios = require("axios")
+const axios = require("axios");
 
 const cep_endereco = (req, res, next) => {
+  // Remove caracteres indesejados do CEP
+  const cep = req.body.cep.replaceAll(".", "").replaceAll("-", "");
 
-  req.body.cep = req.body.cep.replaceAll(".", "").replaceAll("-", "")
-
-  if (
-    req.body.cep.length == 8 &&
-    !isNaN(Number(req.body.cep))
-  ) {
-    axios.get(`https://viacep.com.br/ws/${req.body.cep}/json/`)
+  // Validação do CEP
+  if (cep.length == 8 && !isNaN(Number(cep))) {
+    axios.get(`https://viacep.com.br/ws/${cep}/json/`)
       .then(resposta => {
+        // Atribui o valor ao campo correto
+        req.body.cep_endereco = Number(cep); // Certifique-se de converter para Number
 
-        delete req.body.cep
+        // Atribui o endereço completo se necessário
+        req.body.endereco = resposta.data;
 
-        req.body.endereco = resposta.data
-
-        next()
+        next();
       })
+      .catch(err => {
+        // Lida com erros na requisição à API
+        res.status(500).json({ error: 'Erro ao consultar o CEP' });
+      });
   } else {
-    res.status(400).json()
+    res.status(400).json({ error: 'CEP inválido' });
   }
-}
+};
 
-module.exports = cep_endereco
+module.exports = cep_endereco;
