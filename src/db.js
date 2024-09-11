@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const mongoDB = "mongodb+srv://vv001226:i3gfxhB33!@users.ho0a8.mongodb.net/?retryWrites=true&w=majority&appName=Users"
+const mongoDB = "mongodb+srv://<username>:<password>!@users.ho0a8.mongodb.net/?retryWrites=true&w=majority&appName=Users"
 
 async function main() {
   await mongoose.connect(mongoDB)
